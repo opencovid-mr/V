@@ -46,21 +46,21 @@ update=FASCIA_ETA["results"][0]["result"]['data']['timestamp']
 update=update.replace(':', '_').replace('.', '_')
 
 
-f_r = csv.writer(open("regioni"+update+".csv", "w+"),lineterminator='\n')
+f_r = csv.writer(open("data/regioni"+update+".csv", "w+"),lineterminator='\n')
 
 f_r.writerow(["Regione", "somministrazioni", "percentuale", "dosi_consegnate"])
 
 for row in data_reg:
     f_r.writerow(row['C'])
 
-f_c = csv.writer(open("categorie"+update+".csv", "w+"),lineterminator='\n')
+f_c = csv.writer(open("data/categorie"+update+".csv", "w+"),lineterminator='\n')
 
 f_c.writerow(["Categoria", "somministrazioni"])
 
 for row in data_cat:
     f_c.writerow(row['C'])
 
-f_e = csv.writer(open("eta"+update+".csv", "w+"),lineterminator='\n')
+f_e = csv.writer(open("data/eta"+update+".csv", "w+"),lineterminator='\n')
 
 f_e.writerow(["Classe", "somministrazioni"])
 
