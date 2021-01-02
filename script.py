@@ -69,50 +69,6 @@ write_json_to_csv(update, "regioni", ["Regione", "somministrazioni", "percentual
 write_json_to_csv(update, "categoria", ["Categoria", "somministrazioni"],  data_cat)
 write_json_to_csv(update, "eta", ["Classe", "somministrazioni"],  data_eta)
 
-write_raw_region(s, update, "Veneto")
-write_raw_region(s, update, "Trentino-Alto Adige")
-write_raw_region(s, update, "Lombardia")
-write_raw_region(s, update, "Sicilia")
-write_raw_region(s, update, "Sardegna")
-write_raw_region(s, update, "Lazio")
-write_raw_region(s, update, "Molise")
-write_raw_region(s, update, "Abruzzo")
-write_raw_region(s, update, "Calabria")
-write_raw_region(s, update, "Puglia")
-write_raw_region(s, update, "Valle d'Aosta")
-write_raw_region(s, update, "Friuli-Venezia Giulia")
-write_raw_region(s, update, "Emilia-Romagna")
-write_raw_region(s, update, "Liguria")
-write_raw_region(s, update, "Toscana")
-write_raw_region(s, update, "Umbria")
-write_raw_region(s, update, "Basilicata")
-write_raw_region(s, update, "Marche")
-write_raw_region(s, update, "Campania")
-
-
-data = '{"version":"1.0.0","queries":[{"Query":{"Commands":[{"SemanticQueryDataShapeCommand":{"Query":{"Version":2,"From":[{"Name":"t2","Entity":"TAB_MASTER_PIVOT","Type":0}],"Select":[{"Column":{"Expression":{"SourceRef":{"Source":"t2"}},"Property":"Categoria Attributo"},"Name":"TAB_MASTER_PIVOT.Categoria Attributo"},{"Aggregation":{"Expression":{"Column":{"Expression":{"SourceRef":{"Source":"t2"}},"Property":"Valore"}},"Function":0},"Name":"Sum(TAB_MASTER_PIVOT.Valore)"}],"OrderBy":[{"Direction":1,"Expression":{"Column":{"Expression":{"SourceRef":{"Source":"t2"}},"Property":"Categoria Attributo"}}}]},"Binding":{"Primary":{"Groupings":[{"Projections":[0,1]}]},"DataReduction":{"DataVolume":4,"Primary":{"Window":{"Count":1000}}},"Version":1}}}]},"CacheKey":"{\\"Commands\\":[{\\"SemanticQueryDataShapeCommand\\":{\\"Query\\":{\\"Version\\":2,\\"From\\":[{\\"Name\\":\\"t2\\",\\"Entity\\":\\"TAB_MASTER_PIVOT\\",\\"Type\\":0}],\\"Select\\":[{\\"Column\\":{\\"Expression\\":{\\"SourceRef\\":{\\"Source\\":\\"t2\\"}},\\"Property\\":\\"Categoria Attributo\\"},\\"Name\\":\\"TAB_MASTER_PIVOT.Categoria Attributo\\"},{\\"Aggregation\\":{\\"Expression\\":{\\"Column\\":{\\"Expression\\":{\\"SourceRef\\":{\\"Source\\":\\"t2\\"}},\\"Property\\":\\"Valore\\"}},\\"Function\\":0},\\"Name\\":\\"Sum(TAB_MASTER_PIVOT.Valore)\\"}],\\"OrderBy\\":[{\\"Direction\\":1,\\"Expression\\":{\\"Column\\":{\\"Expression\\":{\\"SourceRef\\":{\\"Source\\":\\"t2\\"}},\\"Property\\":\\"Categoria Attributo\\"}}}]},\\"Binding\\":{\\"Primary\\":{\\"Groupings\\":[{\\"Projections\\":[0,1]}]},\\"DataReduction\\":{\\"DataVolume\\":4,\\"Primary\\":{\\"Window\\":{\\"Count\\":1000}}},\\"Version\\":1}}}]}","QueryId":"","ApplicationContext":{"DatasetId":"5bff6260-1025-49e0-8e9b-169ade7c07f9","Sources":[{"ReportId":"b548a77c-ab0a-4d7c-a457-2e38c2914fc6"}]}}],"cancelQueries":[],"modelId":4280811}'
-
-CATEGORIA = json.loads(requests.post(url, headers=headers, params=params, data=data).text)
-
-data = '{"version":"1.0.0","queries":[{"Query":{"Commands":[{"SemanticQueryDataShapeCommand":{"Query":{"Version":2,"From":[{"Name":"t2","Entity":"TAB_REGIONI","Type":0},{"Name":"t","Entity":"TAB_MASTER","Type":0}],"Select":[{"Column":{"Expression":{"SourceRef":{"Source":"t2"}},"Property":"AREA"},"Name":"TAB_REGIONI.AREA"},{"Aggregation":{"Expression":{"Column":{"Expression":{"SourceRef":{"Source":"t"}},"Property":"TOT_SOMM"}},"Function":0},"Name":"Sum(TAB_MASTER.TOT_SOMM)"},{"Measure":{"Expression":{"SourceRef":{"Source":"t"}},"Property":"TassoVaccinazione"},"Name":"TAB_MASTER.TassoVaccinazione"},{"Aggregation":{"Expression":{"Column":{"Expression":{"SourceRef":{"Source":"t"}},"Property":"DOSI_CONSEGNATE"}},"Function":4},"Name":"Sum(TAB_MASTER.DOSI_CONSEGNATE)"}],"OrderBy":[{"Direction":1,"Expression":{"Column":{"Expression":{"SourceRef":{"Source":"t2"}},"Property":"AREA"}}}]},"Binding":{"Primary":{"Groupings":[{"Projections":[0,1,2,3]}]},"DataReduction":{"DataVolume":3,"Primary":{"Window":{"Count":500}}},"Version":1}}}]},"CacheKey":"{\\"Commands\\":[{\\"SemanticQueryDataShapeCommand\\":{\\"Query\\":{\\"Version\\":2,\\"From\\":[{\\"Name\\":\\"t2\\",\\"Entity\\":\\"TAB_REGIONI\\",\\"Type\\":0},{\\"Name\\":\\"t\\",\\"Entity\\":\\"TAB_MASTER\\",\\"Type\\":0}],\\"Select\\":[{\\"Column\\":{\\"Expression\\":{\\"SourceRef\\":{\\"Source\\":\\"t2\\"}},\\"Property\\":\\"AREA\\"},\\"Name\\":\\"TAB_REGIONI.AREA\\"},{\\"Aggregation\\":{\\"Expression\\":{\\"Column\\":{\\"Expression\\":{\\"SourceRef\\":{\\"Source\\":\\"t\\"}},\\"Property\\":\\"TOT_SOMM\\"}},\\"Function\\":0},\\"Name\\":\\"Sum(TAB_MASTER.TOT_SOMM)\\"},{\\"Measure\\":{\\"Expression\\":{\\"SourceRef\\":{\\"Source\\":\\"t\\"}},\\"Property\\":\\"TassoVaccinazione\\"},\\"Name\\":\\"TAB_MASTER.TassoVaccinazione\\"},{\\"Aggregation\\":{\\"Expression\\":{\\"Column\\":{\\"Expression\\":{\\"SourceRef\\":{\\"Source\\":\\"t\\"}},\\"Property\\":\\"DOSI_CONSEGNATE\\"}},\\"Function\\":4},\\"Name\\":\\"Sum(TAB_MASTER.DOSI_CONSEGNATE)\\"}],\\"OrderBy\\":[{\\"Direction\\":1,\\"Expression\\":{\\"Column\\":{\\"Expression\\":{\\"SourceRef\\":{\\"Source\\":\\"t2\\"}},\\"Property\\":\\"AREA\\"}}}]},\\"Binding\\":{\\"Primary\\":{\\"Groupings\\":[{\\"Projections\\":[0,1,2,3]}]},\\"DataReduction\\":{\\"DataVolume\\":3,\\"Primary\\":{\\"Window\\":{\\"Count\\":500}}},\\"Version\\":1}}}]}","QueryId":"","ApplicationContext":{"DatasetId":"5bff6260-1025-49e0-8e9b-169ade7c07f9","Sources":[{"ReportId":"b548a77c-ab0a-4d7c-a457-2e38c2914fc6"}]}}],"cancelQueries":[],"modelId":4280811}'
-
-REGIONI =  json.loads(requests.post(url, headers=headers, params=params, data=data).text)
-
-
-data_reg=REGIONI["results"][0]["result"]['data']['dsr']['DS'][0]['PH'][0]['DM0']
-
-data_cat=CATEGORIA["results"][0]["result"]['data']['dsr']['DS'][0]['PH'][0]['DM0']
-
-data_eta=FASCIA_ETA["results"][0]["result"]['data']['dsr']['DS'][0]['PH'][0]['DM0']
-
-update=FASCIA_ETA["results"][0]["result"]['data']['timestamp']
-
-update=update.replace(':', '_').replace('.', '_')
-
-write_json_to_csv(update, "regioni", ["Regione", "somministrazioni", "percentuale", "dosi_consegnate"],  data_reg)
-write_json_to_csv(update, "categoria", ["Categoria", "somministrazioni"],  data_cat)
-write_json_to_csv(update, "eta", ["Classe", "somministrazioni"],  data_eta)
-
 write_raw_region(s, update, "Valle d'Aosta")
 write_raw_region(s, update, "Piemonte")
 write_raw_region(s, update, "Lombardia")
