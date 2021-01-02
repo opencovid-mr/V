@@ -46,7 +46,7 @@ update=FASCIA_ETA["results"][0]["result"]['data']['timestamp']
 update=update.replace(':', '_').replace('.', '_')
 
 
-f_r = csv.writer(open("regioni"+update+".csv", "w+"),lineterminator='\n')
+f_r = csv.writer(open("data/regioni"+update+".csv", "w+"),lineterminator='\n')
 
 f_r.writerow(["Regione", "somministrazioni", "percentuale", "dosi_consegnate"])
 
